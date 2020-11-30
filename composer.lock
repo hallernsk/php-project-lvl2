@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "b984102e976503d46db699ad72367edf",
+    "content-hash": "2ed547c4d4c74cb26069607daa590e39",
     "packages": [
         {
             "name": "docopt/docopt",
@@ -50,6 +50,10 @@
                 "cli",
                 "docs"
             ],
+            "support": {
+                "issues": "https://github.com/docopt/docopt.php/issues",
+                "source": "https://github.com/docopt/docopt.php/tree/1.0.4"
+            },
             "time": "2019-12-03T02:48:46+00:00"
         }
     ],
@@ -61,5 +65,5 @@
     "prefer-lowest": false,
     "platform": [],
     "platform-dev": [],
-    "plugin-api-version": "1.1.0"
+    "plugin-api-version": "2.0.0"
 }
