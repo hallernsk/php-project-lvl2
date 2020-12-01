@@ -4,8 +4,12 @@ namespace GenDiff\DifferFiles;
 
 function differ($pathFile1, $pathFile2)
 {
-$fileJson1 = file_get_contents(__DIR__ . "./../$pathFile1"); // считываем содержимое файла 1
-$fileJson2 = file_get_contents(__DIR__ . "./../$pathFile2"); // считываем содержимое файла 2
+set_include_path(getcwd());
+//echo getcwd() . "\n"; // проверка рабочей директории, вывод: /home/vova/php-project-lvl2
+
+$fileJson1 = file_get_contents($pathFile1, FILE_USE_INCLUDE_PATH); // считываем содержимое
+$fileJson2 = file_get_contents($pathFile2, FILE_USE_INCLUDE_PATH); // файлов по-другому
+
 $data1 = json_decode($fileJson1, true);  // декодируем из json1 в ассоц. массив1 (true)
 $data2 = json_decode($fileJson2, true);  // декодируем из json2 в ассоц. массив2 (true)
 
@@ -39,7 +43,7 @@ foreach ($data1 as $key1 => $val1) {    // формируем итоговый �
         }
 }
 
-foreach ($data2 as $key2 => $val2) {  //    ... этап 2 - неохваченные элементы массива 2
+foreach ($data2 as $key2 => $val2) {  //    ... этап 2 - "неохваченные" элементы массива 2
     if (!array_key_exists($key2, $data1)) {
         $resultArray[] = " + {$key2}: {$val2}" . PHP_EOL;   
     }
