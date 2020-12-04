@@ -17,7 +17,8 @@
     },
     "autoload": {
         "files": [
-            "src/differ.php"            
+            "src/differ.php",
+            "src/readData.php"            
         ]
     }
 }
