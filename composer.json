@@ -20,5 +20,11 @@
             "src/differ.php",
             "src/readData.php"            
         ]
+    },
+    "require-dev": {
+        "squizlabs/php_codesniffer": "^3.5"
+    },
+    "scripts": {
+        "phpcs": "phpcs"
     }
 }
