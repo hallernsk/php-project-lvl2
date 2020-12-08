@@ -31,22 +31,22 @@ function differ($pathFile1, $pathFile2)
     // формируем итоговый массив из объединенного(проходя его в цикле):
     foreach ($unitedArray as $key => $val) {
         if (!array_key_exists($key, $data2)) {            // ключ есть только в М1
-            $resultArray[] = " - {$key}: {$data1[$key]}"; // - строка
+            $resultArray[] = "  - {$key}: {$data1[$key]}"; // - строка
             continue;
         }
 
         if (!array_key_exists($key, $data1)) {         // ключ есть только в М2
-            $resultArray[] = " + {$key}: {$data2[$key]}"; // + строка
+            $resultArray[] = "  + {$key}: {$data2[$key]}"; // + строка
             continue;
         }
 
         if ($data1[$key] === $data2[$key]) {  // значения по ключу равны в М1 и М2
-            $resultArray[] = "   {$key}: {$data1[$key]}"; // строка без знака
+            $resultArray[] = "    {$key}: {$data1[$key]}"; // строка без знака
             continue;
         }
         // значения по ключу не равны:
-        $resultArray[] = " - {$key}: {$data1[$key]}";         // - строка
-        $resultArray[] = " + {$key}: {$data2[$key]}";         // + строка
+        $resultArray[] = "  - {$key}: {$data1[$key]}";         // - строка
+        $resultArray[] = "  + {$key}: {$data2[$key]}";         // + строка
     }
     // оформляем результат в соотв-ии с заданием (при этом массив - в строку)
     $resultString = '{' . PHP_EOL . implode(PHP_EOL, $resultArray) . PHP_EOL . '}' . PHP_EOL;
