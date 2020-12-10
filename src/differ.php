@@ -25,11 +25,12 @@ function differ($pathFile1, $pathFile2)
 
     // новый алгоритм: сначала мержим массивы в один:
     $unitedArray = array_merge($data1, $data2);
-    ksort($unitedArray);
+    $unitedArrayKeys = array_keys($unitedArray); // массив ключей из $unitedArray
+    sort($unitedArrayKeys);
 
     $resultArray = []; // итоговый массив
-    // формируем итоговый массив из объединенного(проходя его в цикле):
-    foreach ($unitedArray as $key => $val) {
+    // формируем итоговый массив из объединенного(массива ключей):
+    foreach ($unitedArrayKeys as $key) {
         if (!array_key_exists($key, $data2)) {            // ключ есть только в М1
             $resultArray[] = "  - {$key}: {$data1[$key]}"; // - строка
             continue;
