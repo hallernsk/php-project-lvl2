@@ -23,14 +23,16 @@ function differ($pathFile1, $pathFile2)
         }
     }
 
-    // новый алгоритм: сначала мержим массивы в один:
-    $unitedArray = array_merge($data1, $data2);
-    $unitedArrayKeys = array_keys($unitedArray); // массив ключей из $unitedArray
-    sort($unitedArrayKeys);
+    // новый-новый алгоритм: сначала из массивов данных создаем массивы ключей:
+    $keysData1 = array_keys($data1);
+    $keysData2 = array_keys($data2);
+    $unitedArrayKeys = array_merge($keysData1, $keysData2); //объединенный массив ключей
+    $unitedArrayUniqKeys = array_unique($unitedArrayKeys);  // убираем дублирование
+    sort($unitedArrayUniqKeys);                           // сортируем массив ключей
 
     $resultArray = []; // итоговый массив
     // формируем итоговый массив из объединенного(массива ключей):
-    foreach ($unitedArrayKeys as $key) {
+    foreach ($unitedArrayUniqKeys as $key) {
         if (!array_key_exists($key, $data2)) {            // ключ есть только в М1
             $resultArray[] = "  - {$key}: {$data1[$key]}"; // - строка
             continue;
