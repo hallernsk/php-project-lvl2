@@ -19,7 +19,8 @@
     "autoload": {
         "files": [
             "src/differ.php",
-            "src/readData.php"            
+            "src/readData.php",
+            "src/parsers.php"            
         ]
     },
     "require-dev": {

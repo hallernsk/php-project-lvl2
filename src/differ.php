@@ -2,12 +2,12 @@
 
 namespace GenDiff\DifferFiles;
 
-use function GenDiff\ReadData\readData;
+use function GenDiff\Parsers\parse;
 
 function differ($pathFile1, $pathFile2)
 {
-    $data1 = readData($pathFile1);  // получаем ассоц. массив1 из файла1
-    $data2 = readData($pathFile2);  // получаем ассоц. массив2 из файла2
+    $data1 = parse($pathFile1);  // получаем ассоц. массив1 из файла1
+    $data2 = parse($pathFile2);  // получаем ассоц. массив2 из файла2
 
     // сортируем массивы:
     ksort($data1);
