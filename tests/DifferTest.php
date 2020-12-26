@@ -9,10 +9,17 @@ use function GenDiff\ReadData\readData;
 
 class DifferTest extends TestCase
 {
-    public function testDiffer()
+    public function testDifferJson()
     {
-        $correctDiff = (file_get_contents(dirname(__DIR__) . '/' . 'tests/fixtures/correctDiff'));
+        $correctDiff = (file_get_contents(__DIR__ . '/fixtures/correctDiff'));
         $resultDiff = differ('files/file1.json', 'files/file2.json');
         $this->assertEquals($correctDiff, $resultDiff);
     }
+
+    public function testDifferYaml()
+    {
+        $correctDiff = (file_get_contents(__DIR__ . '/fixtures/correctDiff'));
+        $resultDiff = differ('files/file1.yml', 'files/file2.yml');
+        $this->assertEquals($correctDiff, $resultDiff);
+    }   
 }
