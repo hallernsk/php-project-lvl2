@@ -4,8 +4,7 @@ namespace GenDiff\Tests;
 
 use PHPUnit\Framework\TestCase;
 
-use function GenDiff\DifferFiles\differ;
-use function GenDiff\ReadData\readData;
+use function GenDiff\DifferMain\differ;
 
 class DifferTest extends TestCase
 {
@@ -21,5 +20,5 @@ class DifferTest extends TestCase
         $correctDiff = (file_get_contents(__DIR__ . '/fixtures/correctDiff'));
         $resultDiff = differ('files/file1.yml', 'files/file2.yml');
         $this->assertEquals($correctDiff, $resultDiff);
-    }   
+    }  
 }

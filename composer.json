@@ -18,8 +18,10 @@
     },
     "autoload": {
         "files": [
-            "src/differ.php",
-            "src/readData.php",
+            "src/diff.php",
+            "src/differMain.php",
+            "src/readFileContent.php",
+            "src/getFileFormat.php",
             "src/parsers.php"            
         ]
     },

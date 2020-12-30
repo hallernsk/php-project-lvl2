@@ -1,15 +1,10 @@
 <?php
 
-namespace GenDiff\DifferFiles;
+namespace GenDiff\Diff;
 
-use function GenDiff\Parsers\parse;
-
-function differ($pathFile1, $pathFile2)
+function diff($data1, $data2)
 {
-    $data1 = parse($pathFile1);  // получаем ассоц. массив1 из файла1
-    $data2 = parse($pathFile2);  // получаем ассоц. массив2 из файла2
-
-    // сортируем массивы:
+    // сортируем входные массивы:
     ksort($data1);
     foreach ($data1 as $key => $value) {   // преобразуем логическое true/false
         if (is_bool($value)) {             // в строковое "true"/"false"
@@ -23,7 +18,7 @@ function differ($pathFile1, $pathFile2)
         }
     }
 
-    // новый-новый алгоритм: сначала из массивов данных создаем массивы ключей:
+    // из массивов данных создаем массивы ключей:
     $keysData1 = array_keys($data1);
     $keysData2 = array_keys($data2);
     $unitedArrayKeys = array_merge($keysData1, $keysData2); //объединенный массив ключей
@@ -51,7 +46,5 @@ function differ($pathFile1, $pathFile2)
         $resultArray[] = "  - {$key}: {$data1[$key]}";         // - строка
         $resultArray[] = "  + {$key}: {$data2[$key]}";         // + строка
     }
-    // оформляем результат в соотв-ии с заданием (при этом массив - в строку)
-    $resultString = '{' . PHP_EOL . implode(PHP_EOL, $resultArray) . PHP_EOL . '}' . PHP_EOL;
-    return $resultString;
+    return $resultArray;
 }
