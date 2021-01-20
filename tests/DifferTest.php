@@ -21,4 +21,11 @@ class DifferTest extends TestCase
         $resultDiff = differ('files/file1.yml', 'files/file2.yml');
         $this->assertEquals($correctDiff, $resultDiff);
     }  
+    
+    public function testDifferTreeJson()
+    {
+        $correctDiff = (file_get_contents(__DIR__ . '/fixtures/correctDiffTree'));
+        $resultDiff = differ('files/fileTree1.json', 'files/fileTree2.json');
+        $this->assertEquals($correctDiff, $resultDiff);
+    }
 }
