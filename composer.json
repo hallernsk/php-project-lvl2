@@ -22,7 +22,8 @@
             "src/differMain.php",
             "src/readFileContent.php",
             "src/getFileFormat.php",
-            "src/parsers.php"            
+            "src/parsers.php",
+            "src/buildDiffTree.php"            
         ]
     },
     "require-dev": {
