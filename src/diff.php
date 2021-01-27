@@ -24,6 +24,7 @@ function diff($data1, $data2)
     $unitedArrayKeys = array_merge($keysData1, $keysData2); //объединенный массив ключей
     $unitedArrayUniqKeys = array_unique($unitedArrayKeys);  // убираем дублирование
     sort($unitedArrayUniqKeys);                           // сортируем массив ключей
+//  var_dump($unitedArrayUniqKeys);
 
     $resultArray = []; // итоговый массив
     // формируем итоговый массив из объединенного(массива ключей):

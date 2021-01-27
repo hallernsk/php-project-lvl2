@@ -43,7 +43,7 @@ function buildDiffTree(array $data1, array $data2): array
             return ['key' => $key, 'type' => 'nested',
                 'children' => buildDiffTree($data1[$key], $data2[$key])];
         } else {
-            return ['key' => $key, 'type' => 'changed', 'value1' => $data1[$key], 'value2' => $data2[$key]];
+            return ['key' => $key, 'type' => 'changed', 'valueOld' => $data1[$key], 'valueNew' => $data2[$key]];
         }
     }, $unitedArrayUniqKeys);
     return $diffTree;

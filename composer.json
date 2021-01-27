@@ -20,10 +20,10 @@
         "files": [
             "src/diff.php",
             "src/differMain.php",
-            "src/readFileContent.php",
-            "src/getFileFormat.php",
+            "src/readFile.php",
             "src/parsers.php",
-            "src/buildDiffTree.php"            
+            "src/buildDiffTree.php", 
+            "src/stylish.php"           
         ]
     },
     "require-dev": {
