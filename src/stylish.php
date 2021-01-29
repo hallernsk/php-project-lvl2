@@ -5,19 +5,25 @@ namespace GenDiff\Formater;
 function formater(array $diffTree): array
 {
     $result = array_map(function ($node) {
-        if ($node['type'] === 'deleted') {
-            return "  - {$node['key']}: {$node['value']}"; // - строка
-        }
-        if ($node['type'] === 'added') {
-            return "  + {$node['key']}: {$node['value']}"; // + строка
-        }
-        if ($node['type'] === 'unchanged') {
-            return "    {$node['key']}: {$node['value']}"; //   строка
-        }
-        if ($node['type'] === 'changed') {
-            return "  - {$node['key']}: {$node['valueOld']} . EOL .  + {$node['key']}: {$node['valueNew']}";
-        } else {
-            return (formater($node['children'])); // nested - рекурсия
+        switch ($node['type']) {
+            case 'deleted':
+                return "  - {$node['key']}: {$node['value']}"; // - строка
+
+            case 'added':
+                return "  + {$node['key']}: {$node['value']}"; // + строка
+
+            case 'unchanged':
+                return "    {$node['key']}: {$node['value']}"; //   строка
+
+            case 'changed':                                // -+ две строки
+                return "  - {$node['key']}: {$node['valueOld']} " . PHP_EOL . "  + {$node['key']}: {$node['valueNew']}";
+
+            case 'nested':
+                $stringNested = implode(PHP_EOL, formater($node['children']));
+                return "    {$node['key']}:" . PHP_EOL . "{$stringNested}"; // nested - рекурсия
+
+            default:
+                throw new \Exception("Incorrect node type");
         }
     }, $diffTree);
     return $result;
