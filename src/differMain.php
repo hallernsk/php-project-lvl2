@@ -20,7 +20,7 @@ function differ($pathFile1, $pathFile2)
 
     $diffArray = buildDiffTree($data1, $data2);      // определяем диф
     $formaterArray = formater($diffArray);           // форматируем диф
-    var_dump($formaterArray);
+//    var_dump($formaterArray);
 //    $diffString = json_encode($diffArray);
 //    print_r($diffString);
     // оформляем результат в соотв-ии с заданием (при этом массив - в строку)

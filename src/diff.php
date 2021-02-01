@@ -6,17 +6,8 @@ function diff($data1, $data2)
 {
     // сортируем входные массивы:
     ksort($data1);
-    foreach ($data1 as $key => $value) {   // преобразуем логическое true/false
-        if (is_bool($value)) {             // в строковое "true"/"false"
-            $data1[$key] = (bool)$data1[$key] ? 'true' : 'false';
-        }
-    }
+
     ksort($data2);
-    foreach ($data2 as $key => $value) {
-        if (is_bool($value)) {
-            $data2[$key] = (bool)$data2[$key] ? 'true' : 'false';
-        }
-    }
 
     // из массивов данных создаем массивы ключей:
     $keysData1 = array_keys($data1);
