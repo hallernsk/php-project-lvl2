@@ -49,10 +49,15 @@ function toString($value)
         return 'null';
     }
 
-
     if (is_array($value)) {
-        $stringArray = implode(PHP_EOL, $value);
-        return $stringArray;
+//        $stringArray = implode(PHP_EOL, formater($value));
+//        return $stringArray;
+
+//        $stringArray = implode(PHP_EOL, toString($value));
+//        return implode(PHP_EOL, $value);
+
+        return json_encode($value);
     }
+
     return $value;
 }
