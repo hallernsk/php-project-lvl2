@@ -54,9 +54,9 @@ function toString($value)
 //        return $stringArray;
 
 //        $stringArray = implode(PHP_EOL, toString($value));
-//        return implode(PHP_EOL, $value);
+//        return $stringArray;
 
-        return json_encode($value);
+        return json_encode($value, JSON_PRETTY_PRINT);
     }
 
     return $value;
