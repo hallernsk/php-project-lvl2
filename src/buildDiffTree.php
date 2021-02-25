@@ -15,8 +15,6 @@ function buildDiffTree(array $data1, array $data2): array
     $unitedArrayUniqKeys = array_unique($unitedArrayKeys);  // убираем дублирование
     sort($unitedArrayUniqKeys);                           // сортируем массив ключей
 
-//    var_dump($unitedArrayUniqKeys);
-
     $diffTree = array_map(function ($key) use ($data1, $data2) {
         if (!array_key_exists($key, $data2)) {            // ключ есть только в М1
             return ['key' => $key, 'type' => 'deleted', 'value' => $data1[$key]];
