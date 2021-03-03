@@ -7,34 +7,34 @@ const BASE_INDENT = '    ';
 function formater(array $diffTree, int $depth = 0): array
 {
     $indent = getIndent($depth);
-    $result = array_map(function ($node) use ($indent, $depth) {
-        $newDepth = $depth + 1;
+    $inDepth = $depth + 1;
+    $result = array_map(function ($node) use ($indent, $inDepth) {
         switch ($node['type']) {
             case 'deleted':
                 $value = $node['value'];
-                $stringValue = toString($value, $newDepth);
+                $stringValue = toString($value, $inDepth);
                 return "{$indent}  - {$node['key']}: {$stringValue}"; // - строка
 
             case 'added':
                 $value = $node['value'];
-                $stringValue = toString($value, $newDepth);
+                $stringValue = toString($value, $inDepth);
                 return "{$indent}  + {$node['key']}: {$stringValue}"; // + строка
 
             case 'unchanged':
                 $value = $node['value'];
-                $stringValue = toString($value, $newDepth);
+                $stringValue = toString($value, $inDepth);
                 return "{$indent}    {$node['key']}: {$stringValue}"; //   строка
 
             case 'changed':
                 $valueOld = $node['valueOld'];
-                $stringValueOld = toString($valueOld, $newDepth);
+                $stringValueOld = toString($valueOld, $inDepth);
                 $valueNew = $node['valueNew'];
-                $stringValueNew = toString($valueNew, $newDepth);               // -+ две строки
+                $stringValueNew = toString($valueNew, $inDepth);               // -+ две строки
                 return "{$indent}  - {$node['key']}: {$stringValueOld}" . PHP_EOL .
                        "{$indent}  + {$node['key']}: {$stringValueNew}";
 
             case 'nested':
-                $stringNested = implode(PHP_EOL, formater($node['children'], $newDepth));
+                $stringNested = implode(PHP_EOL, formater($node['children'], $inDepth));
                 return "{$indent}    {$node['key']}: {" . PHP_EOL .
                      "{$stringNested}" . PHP_EOL . "{$indent}    }"; // nested - рекурсия
 
@@ -71,8 +71,8 @@ function arrayToString(array $arrayValue, int $depth): string
     $inDepth = $depth + 1;
     $result = array_map(function ($key) use ($arrayValue, $inDepth) {
         $val = toString($arrayValue[$key], $inDepth);
-        $currentIndent = getIndent($inDepth);
-        $resultString = PHP_EOL . "{$currentIndent}{$key}: {$val}";
+        $indent = getIndent($inDepth);
+        $resultString = PHP_EOL . "{$indent}{$key}: {$val}";
         return $resultString;
     }, $arrayKeysValue);
     return implode('', $result);
