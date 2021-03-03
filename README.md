@@ -14,3 +14,7 @@ Generate diff of two JSON-files:
 Generate diff of two YAML-files:
 
 [![asciicast](https://asciinema.org/a/s835PU1OOe3kLbdVgVPVt8RLO.svg)](https://asciinema.org/a/s835PU1OOe3kLbdVgVPVt8RLO)
+
+Generate diff of two complex JSON/YAML-files:
+
+[![asciicast](https://asciinema.org/a/mhB0zaaeSowvdNQw8eJlGAWCj.svg)](https://asciinema.org/a/mhB0zaaeSowvdNQw8eJlGAWCj)
