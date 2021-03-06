@@ -23,7 +23,8 @@
             "src/readFile.php",
             "src/parsers.php",
             "src/buildDiffTree.php", 
-            "src/stylish.php"           
+            "src/stylish.php",
+            "src/plain.php"
         ]
     },
     "require-dev": {

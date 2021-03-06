@@ -7,6 +7,7 @@ use function GenDiff\Parsers\parse;
 use function GenDiff\Diff\diff;
 use function GenDiff\BuildDiffTree\buildDiffTree;
 use function GenDiff\Formater\formater;
+use function GenDiff\FormaterPlain\formaterPlain;
 
 function differ($pathFile1, $pathFile2)
 {
@@ -19,11 +20,11 @@ function differ($pathFile1, $pathFile2)
 //    var_dump($data2);
 
     $diffArray = buildDiffTree($data1, $data2);      // определяем диф
-    $formaterArray = formater($diffArray);           // форматируем диф
+    $formaterArray = formaterPlain($diffArray);           // форматируем диф
 //    var_dump($formaterArray);
 //    $diffString = json_encode($diffArray);
 //    print_r($diffString);
     // оформляем результат в соотв-ии с заданием (при этом массив - в строку)
-    $diffString = '{' . PHP_EOL . implode(PHP_EOL, $formaterArray) . PHP_EOL . '}' . PHP_EOL;
-    return $diffString;
+    $diffString = implode(PHP_EOL, $formaterArray);
+    return $diffString . PHP_EOL;
 }
