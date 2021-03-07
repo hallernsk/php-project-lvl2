@@ -8,20 +8,20 @@ use function GenDiff\DifferMain\differ;
 
 class DifferTest extends TestCase
 {
-/*    public function testDifferTreeJson()
+    public function testDifferStylishJson()
     {
-        $correctDiff = (file_get_contents(__DIR__ . '/fixtures/correctDiffTree'));
-        $resultDiff = differ('files/fileTree1.json', 'files/fileTree2.json');
+        $correctDiff = (file_get_contents(__DIR__ . '/fixtures/correctDiffStylish'));
+        $resultDiff = differ('files/fileTree1.json', 'files/fileTree2.json', 'stylish');
         $this->assertEquals($correctDiff, $resultDiff);
     }
     
-    public function testDifferTreeYaml()
+    public function testDifferStylishYaml()
     {
-        $correctDiff = (file_get_contents(__DIR__ . '/fixtures/correctDiffTree'));
-        $resultDiff = differ('files/fileTree1.yml', 'files/fileTree2.yml');
+        $correctDiff = (file_get_contents(__DIR__ . '/fixtures/correctDiffStylish'));
+        $resultDiff = differ('files/fileTree1.yml', 'files/fileTree2.yml', 'stylish');
         $this->assertEquals($correctDiff, $resultDiff);
     }
-*/
+
     public function testDifferPlainJson()
     {
         $correctDiff = (file_get_contents(__DIR__ . '/fixtures/correctDiffPlain'));

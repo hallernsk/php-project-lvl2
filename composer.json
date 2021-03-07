@@ -23,8 +23,6 @@
             "src/readFile.php",
             "src/parsers.php",
             "src/buildDiffTree.php", 
-            "src/stylish.php",
-            "src/plain.php",
             "src/Formatters.php",
             "src/Formatters/Plain.php",
             "src/Formatters/Stylish.php"
