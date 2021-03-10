@@ -35,4 +35,18 @@ class DifferTest extends TestCase
         $resultDiff = differ('files/fileTree1.yml', 'files/fileTree2.yml', 'plain');
         $this->assertEquals($correctDiff, $resultDiff);
     }
+
+    public function testDifferJsonJson()
+    {
+        $correctDiff = (file_get_contents(__DIR__ . '/fixtures/correctDiffJson'));
+        $resultDiff = differ('files/fileTree1.json', 'files/fileTree2.json', 'json');
+        $this->assertEquals($correctDiff, $resultDiff);
+    }
+
+    public function testDifferJsonYaml()
+    {
+        $correctDiff = (file_get_contents(__DIR__ . '/fixtures/correctDiffJson'));
+        $resultDiff = differ('files/fileTree1.yml', 'files/fileTree2.yml', 'json');
+        $this->assertEquals($correctDiff, $resultDiff);
+    }    
 }

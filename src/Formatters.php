@@ -4,6 +4,7 @@ namespace GenDiff\Formatters;
 
 use GenDiff\Formatters\Plain\formaterPlain;
 use GenDiff\Formatters\Stylish\formaterStylish;
+use GenDiff\Formatters\Json\formaterJson;
 
 function formater(array $data, string $format): string
 {
@@ -16,6 +17,10 @@ function formater(array $data, string $format): string
         case 'plain':
             $formaterArray = Plain\formaterPlain($data);
             $formaterString = implode(PHP_EOL, $formaterArray) . PHP_EOL;
+            return $formaterString;
+
+        case 'json':
+            $formaterString = Json\formaterJson($data);
             return $formaterString;
 
         default:
