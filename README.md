@@ -22,3 +22,7 @@ Generate diff of two complex JSON/YAML-files:
 Generate diff of two complex JSON/YAML-files in plain format:
 
 [![asciicast](https://asciinema.org/a/yXMDA3ojoKVszaB9cm844dFDl.svg)](https://asciinema.org/a/yXMDA3ojoKVszaB9cm844dFDl)
+
+Generate diff of two complex JSON/YAML-files in json format:
+
+[![asciicast](https://asciinema.org/a/lbjBicfMAR2XyFjLv7YZAMIL4.svg)](https://asciinema.org/a/lbjBicfMAR2XyFjLv7YZAMIL4)
