@@ -4,10 +4,7 @@ namespace GenDiff\DifferMain;
 
 use function GenDiff\readFile\readFile;
 use function GenDiff\Parsers\parse;
-//use function GenDiff\Diff\diff;
 use function GenDiff\BuildDiffTree\buildDiffTree;
-//use function GenDiff\Formatters\Plain\formaterPlain;
-//use function GenDiff\Formatters\Stylish\formater;
 use function GenDiff\Formatters\formater;
 
 function differ($pathFile1, $pathFile2, $format)
