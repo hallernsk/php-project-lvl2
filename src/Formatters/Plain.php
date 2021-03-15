@@ -40,7 +40,7 @@ function formaterPlain(array $diffTree, string $ancestry = ''): array
         }
     }, $diffTree);
 
-    $newResult = array_diff($result, array(''));
+    $newResult = array_filter($result);
     return $newResult;
 }
 
