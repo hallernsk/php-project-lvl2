@@ -4,8 +4,15 @@
 [![Maintainability](https://api.codeclimate.com/v1/badges/568be85411a7fc055815/maintainability)](https://codeclimate.com/github/hallernsk/php-project-lvl2/maintainability)
 [![Test Coverage](https://api.codeclimate.com/v1/badges/568be85411a7fc055815/test_coverage)](https://codeclimate.com/github/hallernsk/php-project-lvl2/test_coverage)
 
-### Hexlet tests and linter status:
-![Actions Status](/workflows/hexlet-check/badge.svg)
+A php package calculates the difference between two json/yml files and outputs it in stylish (default), plain or json format
+
+### Setup
+
+    $ composer global require hallernsk/php-project-lvl2
+
+### Run
+
+    $ gendiff [--format <fmt>] <file1> <file2>
 
 Generate diff of two JSON-files:
 
