@@ -14,7 +14,7 @@ class DifferTest extends TestCase
         $resultDiff = differ('tests/fixtures/file1.json', 'tests/fixtures/file2.json', 'stylish');
         $this->assertEquals($correctDiff, $resultDiff);
     }
-    
+
     public function testDifferStylishYaml()
     {
         $correctDiff = (file_get_contents(__DIR__ . '/fixtures/correctDiffStylish'));
@@ -48,5 +48,5 @@ class DifferTest extends TestCase
         $correctDiff = (file_get_contents(__DIR__ . '/fixtures/correctDiffJson'));
         $resultDiff = differ('tests/fixtures/file1.yml', 'tests/fixtures/file2.yml', 'json');
         $this->assertEquals($correctDiff, $resultDiff);
-    }    
+    }
 }
