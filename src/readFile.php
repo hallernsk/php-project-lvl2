@@ -2,25 +2,23 @@
 
 namespace GenDiff\ReadFile;
 
-function readFile($pathFile)
+function readFile(string $filePath): array
 {
     // проверка существования файла:
-    if (!file_exists($pathFile)) {
-        throw new \Exception("Incorrect path to file: $pathFile");
+    if (!file_exists($filePath)) {
+        throw new \Exception("Incorrect path to file: $filePath");
     }
-    $content = readFileContent($pathFile);
-    $format = getFileFormat($pathFile);
+    $content = readFileContent($filePath);
+    $format = getFileFormat($filePath);
     return [$content, $format];
 }
 
-function readFileContent($pathFile)
+function readFileContent(string $filePath): string
 {
-    $content = file_get_contents($pathFile);   // считываем содержимое
-    return $content;
+    return file_get_contents($filePath);
 }
 
-function getFileFormat($pathFile)
+function getFileFormat(string $filePath): string
 {
-    $format = pathinfo($pathFile, PATHINFO_EXTENSION);// определяем формат
-    return $format;
+    return pathinfo($filePath, PATHINFO_EXTENSION);
 }
