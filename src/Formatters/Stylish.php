@@ -4,7 +4,7 @@ namespace GenDiff\Formatters\Stylish;
 
 const BASE_INDENT = '    ';
 
-function formaterStylish(array $diffTree, int $depth = 0): array
+function format(array $diffTree, int $depth = 0): array
 {
     $indent = getIndent($depth);
     $inDepth = $depth + 1;
@@ -34,7 +34,7 @@ function formaterStylish(array $diffTree, int $depth = 0): array
                        "{$indent}  + {$node['key']}: {$stringValueNew}";
 
             case 'nested':
-                $stringNested = implode(PHP_EOL, formaterStylish($node['children'], $inDepth));
+                $stringNested = implode(PHP_EOL, format($node['children'], $inDepth));
                 return "{$indent}    {$node['key']}: {" . PHP_EOL .
                      "{$stringNested}" . PHP_EOL . "{$indent}    }"; // nested - рекурсия
 

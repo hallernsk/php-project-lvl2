@@ -2,7 +2,7 @@
 
 namespace GenDiff\Formatters\Json;
 
-function formaterJson(array $diffTree)
+function format(array $diffTree)
 {
     return json_encode($diffTree);
 }

@@ -2,7 +2,7 @@
 
 namespace GenDiff\Formatters\Plain;
 
-function formaterPlain(array $diffTree, string $ancestry = ''): array
+function format(array $diffTree, string $ancestry = ''): array
 {
 //    $ancerty = '';
     $result = array_map(function ($node) use ($ancestry) {
@@ -33,7 +33,7 @@ function formaterPlain(array $diffTree, string $ancestry = ''): array
 
             case 'nested':                          // nested - рекурсия
                 $ancertyAdd = "{$ancestry}.{$node['key']}";
-                $stringNested = implode(PHP_EOL, formaterPlain($node['children'], $ancertyAdd));
+                $stringNested = implode(PHP_EOL, format($node['children'], $ancertyAdd));
                 return $stringNested;
             default:
                 throw new \Exception("Incorrect node type");

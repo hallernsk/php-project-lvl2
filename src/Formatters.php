@@ -6,21 +6,21 @@ use GenDiff\Formatters\Plain\formaterPlain;
 use GenDiff\Formatters\Stylish\formaterStylish;
 use GenDiff\Formatters\Json\formaterJson;
 
-function formater(array $data, string $format): string
+function format(array $data, string $format): string
 {
     switch ($format) {
         case 'stylish':
-            $formaterArray = Stylish\formaterStylish($data);
+            $formaterArray = Stylish\format($data);
             $formaterString = '{' . PHP_EOL . implode(PHP_EOL, $formaterArray) . PHP_EOL . '}' . PHP_EOL;
             return $formaterString;
 
         case 'plain':
-            $formaterArray = Plain\formaterPlain($data);
+            $formaterArray = Plain\format($data);
             $formaterString = implode(PHP_EOL, $formaterArray) . PHP_EOL;
             return $formaterString;
 
         case 'json':
-            $formaterString = Json\formaterJson($data);
+            $formaterString = Json\format($data);
             return $formaterString;
 
         default:
