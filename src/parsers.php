@@ -4,14 +4,16 @@ namespace GenDiff\Parsers;
 
 use Symfony\Component\Yaml\Yaml;
 
-function parse($data, $format)
+function parse(string $data, string $format): array
 {
-    if ($format === 'json') {
-        $result = json_decode($data, true);
-    } elseif ($format === 'yml') {
-        $result = Yaml::parse($data);
-    } else {
-        throw new \Exception("Incorrect file format: $pathFile");
+    switch ($format) {
+        case 'json':
+            return json_decode($data, true);
+
+        case 'yml' || 'yaml':
+            return Yaml::parse($data);
+
+        default:
+            throw new \Exception("Incorrect file format: $format");
     }
-    return $result;
 }
