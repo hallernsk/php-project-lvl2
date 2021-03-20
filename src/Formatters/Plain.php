@@ -2,38 +2,31 @@
 
 namespace GenDiff\Formatters\Plain;
 
-function format(array $diffTree, string $ancestry = ''): array
+function format(array $diffTree, string $path = ''): array
 {
-//    $ancerty = '';
-    $result = array_map(function ($node) use ($ancestry) {
+    $result = array_map(function ($node) use ($path) {
         switch ($node['type']) {
-            case 'deleted':                         // was removed
-                $str = "{$ancestry}.{$node['key']}";
-                $newStr = substr($str, 1);
-                return "Property '{$newStr}' was removed";
+            case 'deleted':
+                $str = "{$path}{$node['key']}";
+                return "Property '{$str}' was removed";
 
-            case 'added':                           // was added
-                $value = $node['value'];
-                $stringValue = toString($value);
-                $str = "{$ancestry}.{$node['key']}";
-                $newStr = substr($str, 1);
-                return "Property '{$newStr}' was added with value: {$stringValue}";
+            case 'added':
+                $stringValue = toString($node['value']);
+                $str = "{$path}{$node['key']}";
+                return "Property '{$str}' was added with value: {$stringValue}";
 
-            case 'unchanged':                       //   ""
+            case 'unchanged':
                 return '';
 
-            case 'changed':                         // was updated
-                $valueOld = $node['valueOld'];
-                $stringValueOld = toString($valueOld);
-                $valueNew = $node['valueNew'];
-                $stringValueNew = toString($valueNew);
-                $str = "{$ancestry}.{$node['key']}";
-                $newStr = substr($str, 1);
-                return "Property '{$newStr}' was updated. From {$stringValueOld} to {$stringValueNew}";
+            case 'changed':
+                $stringValueOld = toString($node['valueOld']);
+                $stringValueNew = toString($node['valueNew']);
+                $str = "{$path}{$node['key']}";
+                return "Property '{$str}' was updated. From {$stringValueOld} to {$stringValueNew}";
 
-            case 'nested':                          // nested - рекурсия
-                $ancertyAdd = "{$ancestry}.{$node['key']}";
-                $stringNested = implode(PHP_EOL, format($node['children'], $ancertyAdd));
+            case 'nested':
+                $pathAdd = "{$path}{$node['key']}.";
+                $stringNested = implode(PHP_EOL, format($node['children'], $pathAdd));
                 return $stringNested;
             default:
                 throw new \Exception("Incorrect node type");
@@ -41,6 +34,7 @@ function format(array $diffTree, string $ancestry = ''): array
     }, $diffTree);
 
     $newResult = array_filter($result);
+//    print_r($newResult);
     return $newResult;
 }
 
