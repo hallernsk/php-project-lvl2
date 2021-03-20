@@ -13,33 +13,33 @@ function format(array $diffTree, int $depth = 0): array
             case 'deleted':
                 $value = $node['value'];
                 $stringValue = toString($value, $inDepth);
-                return "{$indent}  - {$node['key']}: {$stringValue}"; // - строка
+                return "{$indent}  - {$node['key']}: {$stringValue}";
 
             case 'added':
                 $value = $node['value'];
                 $stringValue = toString($value, $inDepth);
-                return "{$indent}  + {$node['key']}: {$stringValue}"; // + строка
+                return "{$indent}  + {$node['key']}: {$stringValue}";
 
             case 'unchanged':
                 $value = $node['value'];
                 $stringValue = toString($value, $inDepth);
-                return "{$indent}    {$node['key']}: {$stringValue}"; //   строка
+                return "{$indent}    {$node['key']}: {$stringValue}";
 
             case 'changed':
                 $valueOld = $node['valueOld'];
                 $stringValueOld = toString($valueOld, $inDepth);
                 $valueNew = $node['valueNew'];
-                $stringValueNew = toString($valueNew, $inDepth);               // -+ две строки
+                $stringValueNew = toString($valueNew, $inDepth);
                 return "{$indent}  - {$node['key']}: {$stringValueOld}" . PHP_EOL .
                        "{$indent}  + {$node['key']}: {$stringValueNew}";
 
             case 'nested':
                 $stringNested = implode(PHP_EOL, format($node['children'], $inDepth));
                 return "{$indent}    {$node['key']}: {" . PHP_EOL .
-                     "{$stringNested}" . PHP_EOL . "{$indent}    }"; // nested - рекурсия
+                     "{$stringNested}" . PHP_EOL . "{$indent}    }";
 
             default:
-                throw new \Exception("Incorrect node type");
+                throw new \Exception("Incorrect node type: {$node['type']}");
         }
     }, $diffTree);
     return $result;
@@ -67,14 +67,14 @@ function toString($value, int $depth): string
 
 function arrayToString(array $arrayValue, int $depth): string
 {
-    $arrayKeysValue = array_keys($arrayValue);
+    $keys = array_keys($arrayValue);
     $inDepth = $depth + 1;
     $result = array_map(function ($key) use ($arrayValue, $inDepth) {
         $val = toString($arrayValue[$key], $inDepth);
         $indent = getIndent($inDepth);
-        $resultString = PHP_EOL . "{$indent}{$key}: {$val}";
-        return $resultString;
-    }, $arrayKeysValue);
+        $result = PHP_EOL . "{$indent}{$key}: {$val}";
+        return $result;
+    }, $keys);
     return implode('', $result);
 }
 
