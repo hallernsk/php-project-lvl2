@@ -10,20 +10,15 @@ function format(array $data, string $format): string
 {
     switch ($format) {
         case 'stylish':
-            $formaterArray = Stylish\format($data);
-            $formaterString = '{' . PHP_EOL . implode(PHP_EOL, $formaterArray) . PHP_EOL . '}' . PHP_EOL;
-            return $formaterString;
+            return Stylish\format($data);
 
         case 'plain':
-            $formaterArray = Plain\format($data);
-            $formaterString = implode(PHP_EOL, $formaterArray) . PHP_EOL;
-            return $formaterString;
+            return Plain\format($data);
 
         case 'json':
-            $formaterString = Json\format($data);
-            return $formaterString;
+            return Json\format($data);
 
         default:
-            throw new \Exception("Incorrect format");
+            throw new \Exception("Incorrect format $format");
     }
 }

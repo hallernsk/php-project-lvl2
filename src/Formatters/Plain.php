@@ -2,7 +2,14 @@
 
 namespace GenDiff\Formatters\Plain;
 
-function format(array $diffTree, string $path = ''): array
+function format(array $data): string
+{
+    $resultArray = formatToPlain($data);
+    $resultString = implode(PHP_EOL, $resultArray) . PHP_EOL;
+    return $resultString;
+}
+
+function formatToPlain(array $diffTree, string $path = ''): array
 {
     $result = array_map(function ($node) use ($path) {
         switch ($node['type']) {
@@ -26,7 +33,7 @@ function format(array $diffTree, string $path = ''): array
 
             case 'nested':
                 $pathAdd = "{$path}{$node['key']}.";
-                $stringNested = implode(PHP_EOL, format($node['children'], $pathAdd));
+                $stringNested = implode(PHP_EOL, formatToPlain($node['children'], $pathAdd));
                 return $stringNested;
             default:
                 throw new \Exception("Incorrect node type");
