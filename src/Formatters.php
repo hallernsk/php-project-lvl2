@@ -2,10 +2,6 @@
 
 namespace GenDiff\Formatters;
 
-use GenDiff\Formatters\Plain\formaterPlain;
-use GenDiff\Formatters\Stylish\formaterStylish;
-use GenDiff\Formatters\Json\formaterJson;
-
 function format(array $data, string $format): string
 {
     switch ($format) {
@@ -19,6 +15,6 @@ function format(array $data, string $format): string
             return Json\format($data);
 
         default:
-            throw new \Exception("Incorrect format $format");
+            throw new \Exception("Incorrect output format $format");
     }
 }

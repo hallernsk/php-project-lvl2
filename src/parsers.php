@@ -10,7 +10,8 @@ function parse(string $data, string $format): array
         case 'json':
             return json_decode($data, true);
 
-        case 'yml' || 'yaml':
+        case 'yml':
+        case 'yaml':
             return Yaml::parse($data);
 
         default:
