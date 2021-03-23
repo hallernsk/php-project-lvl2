@@ -25,5 +25,5 @@ Options:
 
 DOC;
 
-$args = Docopt::handle($doc, array('version'=>'v0.0.1'));
+$args = Docopt::handle($doc, array('version'=>'v0.0.2'));
 print_r(differ($args['<firstFile>'], $args['<secondFile>'], $args['--format']));
