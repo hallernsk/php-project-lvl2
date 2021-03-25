@@ -1,5 +1,5 @@
 {
-    "name": "hallernsk/php-project-lvl2",
+    "name": "hexlet/code",
     "description": "hexlet-project-2",
     "bin": [
       "bin/gendiff"
