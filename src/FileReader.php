@@ -1,6 +1,6 @@
 <?php
 
-namespace GenDiff\ReadFile;
+namespace GenDiff\FileReader;
 
 function readFile(string $filePath): array
 {

@@ -1,8 +1,8 @@
 <?php
 
-namespace GenDiff\DifferMain;
+namespace GenDiff\Differ;
 
-use function GenDiff\readFile\readFile;
+use function GenDiff\FileReader\readFile;
 use function GenDiff\Parsers\parse;
 use function GenDiff\BuildDiffTree\buildDiffTree;
 use function GenDiff\Formatters\format;
