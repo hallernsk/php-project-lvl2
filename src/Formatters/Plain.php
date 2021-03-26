@@ -5,7 +5,7 @@ namespace Differ\Formatters\Plain;
 function format(array $data): string
 {
     $lines = formatToPlain($data);
-    return implode(PHP_EOL, $lines) . PHP_EOL;
+    return implode(PHP_EOL, $lines);
 }
 
 function formatToPlain(array $diffTree, string $path = ''): array

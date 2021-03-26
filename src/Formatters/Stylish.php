@@ -7,7 +7,7 @@ const BASE_INDENT = '    ';
 function format(array $data): string
 {
     $lines = formatToStylish($data);
-    return '{' . PHP_EOL . implode(PHP_EOL, $lines) . PHP_EOL . '}' . PHP_EOL;
+    return '{' . PHP_EOL . implode(PHP_EOL, $lines) . PHP_EOL . '}';
 }
 
 function formatToStylish(array $diffTree, int $depth = 0): array
