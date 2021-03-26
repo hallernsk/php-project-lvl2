@@ -6,9 +6,8 @@ const BASE_INDENT = '    ';
 
 function format(array $data): string
 {
-    $resultArray = formatToStylish($data);
-    $resultString = '{' . PHP_EOL . implode(PHP_EOL, $resultArray) . PHP_EOL . '}' . PHP_EOL;
-    return $resultString;
+    $lines = formatToStylish($data);
+    return '{' . PHP_EOL . implode(PHP_EOL, $lines) . PHP_EOL . '}' . PHP_EOL;
 }
 
 function formatToStylish(array $diffTree, int $depth = 0): array
@@ -19,26 +18,26 @@ function formatToStylish(array $diffTree, int $depth = 0): array
         switch ($node['type']) {
             case 'deleted':
                 $value = $node['value'];
-                $stringValue = toString($value, $inDepth);
-                return "{$indent}  - {$node['key']}: {$stringValue}";
+                $formattedValue = toString($value, $inDepth);
+                return "{$indent}  - {$node['key']}: {$formattedValue}";
 
             case 'added':
                 $value = $node['value'];
-                $stringValue = toString($value, $inDepth);
-                return "{$indent}  + {$node['key']}: {$stringValue}";
+                $formattedValue = toString($value, $inDepth);
+                return "{$indent}  + {$node['key']}: {$formattedValue}";
 
             case 'unchanged':
                 $value = $node['value'];
-                $stringValue = toString($value, $inDepth);
-                return "{$indent}    {$node['key']}: {$stringValue}";
+                $formattedValue = toString($value, $inDepth);
+                return "{$indent}    {$node['key']}: {$formattedValue}";
 
             case 'changed':
                 $valueOld = $node['valueOld'];
-                $stringValueOld = toString($valueOld, $inDepth);
+                $formattedValueOld = toString($valueOld, $inDepth);
                 $valueNew = $node['valueNew'];
-                $stringValueNew = toString($valueNew, $inDepth);
-                return "{$indent}  - {$node['key']}: {$stringValueOld}" . PHP_EOL .
-                       "{$indent}  + {$node['key']}: {$stringValueNew}";
+                $formattedValueNew = toString($valueNew, $inDepth);
+                return "{$indent}  - {$node['key']}: {$formattedValueOld}" . PHP_EOL .
+                       "{$indent}  + {$node['key']}: {$formattedValueNew}";
 
             case 'nested':
                 $stringNested = implode(PHP_EOL, formatToStylish($node['children'], $inDepth));

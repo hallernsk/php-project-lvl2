@@ -4,9 +4,8 @@ namespace GenDiff\Formatters\Plain;
 
 function format(array $data): string
 {
-    $resultArray = formatToPlain($data);
-    $resultString = implode(PHP_EOL, $resultArray) . PHP_EOL;
-    return $resultString;
+    $lines = formatToPlain($data);
+    return implode(PHP_EOL, $lines) . PHP_EOL;
 }
 
 function formatToPlain(array $diffTree, string $path = ''): array
@@ -14,22 +13,22 @@ function formatToPlain(array $diffTree, string $path = ''): array
     $result = array_map(function ($node) use ($path) {
         switch ($node['type']) {
             case 'deleted':
-                $str = "{$path}{$node['key']}";
-                return "Property '{$str}' was removed";
+                $property = "{$path}{$node['key']}";
+                return "Property '{$property}' was removed";
 
             case 'added':
-                $stringValue = toString($node['value']);
-                $str = "{$path}{$node['key']}";
-                return "Property '{$str}' was added with value: {$stringValue}";
+                $formattedValue = toString($node['value']);
+                $property = "{$path}{$node['key']}";
+                return "Property '{$property}' was added with value: {$formattedValue}";
 
             case 'unchanged':
                 return '';
 
             case 'changed':
-                $stringValueOld = toString($node['valueOld']);
-                $stringValueNew = toString($node['valueNew']);
-                $str = "{$path}{$node['key']}";
-                return "Property '{$str}' was updated. From {$stringValueOld} to {$stringValueNew}";
+                $formattedValueOld = toString($node['valueOld']);
+                $formattedValueNew = toString($node['valueNew']);
+                $property = "{$path}{$node['key']}";
+                return "Property '{$property}' was updated. From {$formattedValueOld} to {$formattedValueNew}";
 
             case 'nested':
                 $pathAdd = "{$path}{$node['key']}.";
@@ -40,9 +39,7 @@ function formatToPlain(array $diffTree, string $path = ''): array
         }
     }, $diffTree);
 
-    $newResult = array_filter($result);
-//    print_r($newResult);
-    return $newResult;
+    return array_filter($result);
 }
 
 function toString($value): string
