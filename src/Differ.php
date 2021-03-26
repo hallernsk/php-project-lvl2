@@ -7,7 +7,7 @@ use function Differ\Parsers\parse;
 use function Differ\DiffTreeBuilder\buildDiffTree;
 use function Differ\Formatters\format;
 
-function genDiff(string $filePath1, string $filePath2, string $format): string
+function genDiff(string $filePath1, string $filePath2, string $format = 'stylish'): string
 {
     [$content1, $format1] = readFile($filePath1);
     [$content2, $format2] = readFile($filePath2);
