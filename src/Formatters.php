@@ -1,6 +1,6 @@
 <?php
 
-namespace GenDiff\Formatters;
+namespace Differ\Formatters;
 
 function format(array $data, string $format): string
 {

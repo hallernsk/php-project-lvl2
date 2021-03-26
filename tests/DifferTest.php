@@ -4,17 +4,16 @@ namespace GenDiff\Tests;
 
 use PHPUnit\Framework\TestCase;
 
-use function GenDiff\Differ\differ;
+use function Differ\Differ\genDiff;
 
 class DifferTest extends TestCase
 {
     /**
      * @dataProvider addDataProvider
      */
-
     public function testDiffer($file1, $file2, $format, $correctDiff)
     {
-        $this->assertEquals($correctDiff, differ($file1, $file2, $format));
+        $this->assertEquals($correctDiff, genDiff($file1, $file2, $format));
     }
 
     public function addDataProvider()

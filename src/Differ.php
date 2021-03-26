@@ -1,13 +1,13 @@
 <?php
 
-namespace GenDiff\Differ;
+namespace Differ\Differ;
 
-use function GenDiff\FileReader\readFile;
-use function GenDiff\Parsers\parse;
-use function GenDiff\DiffTreeBuilder\buildDiffTree;
-use function GenDiff\Formatters\format;
+use function Differ\FileReader\readFile;
+use function Differ\Parsers\parse;
+use function Differ\DiffTreeBuilder\buildDiffTree;
+use function Differ\Formatters\format;
 
-function differ(string $filePath1, string $filePath2, string $format): string
+function genDiff(string $filePath1, string $filePath2, string $format): string
 {
     [$content1, $format1] = readFile($filePath1);
     [$content2, $format2] = readFile($filePath2);

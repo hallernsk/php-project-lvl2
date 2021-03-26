@@ -1,6 +1,6 @@
 <?php
 
-namespace GenDiff\DiffTreeBuilder;
+namespace Differ\DiffTreeBuilder;
 
 function buildDiffTree(array $data1, array $data2): array
 {
