@@ -10,7 +10,7 @@ function format(array $data): string
 
 function formatToPlain(array $diffTree, string $path = ''): array
 {
-    $result = array_map(function ($node) use ($path) {
+    $result = array_map(function ($node) use ($path): string {
         switch ($node['type']) {
             case 'deleted':
                 $property = "{$path}{$node['key']}";

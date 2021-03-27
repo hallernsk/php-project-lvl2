@@ -14,7 +14,7 @@ function formatToStylish(array $diffTree, int $depth = 0): array
 {
     $indent = getIndent($depth);
     $inDepth = $depth + 1;
-    $result = array_map(function ($node) use ($indent, $inDepth) {
+    $result = array_map(function ($node) use ($indent, $inDepth): string {
         switch ($node['type']) {
             case 'deleted':
                 $value = $node['value'];
@@ -75,7 +75,7 @@ function arrayToString(array $arrayValue, int $depth): string
 {
     $keys = array_keys($arrayValue);
     $inDepth = $depth + 1;
-    $result = array_map(function ($key) use ($arrayValue, $inDepth) {
+    $result = array_map(function ($key) use ($arrayValue, $inDepth): string {
         $val = toString($arrayValue[$key], $inDepth);
         $indent = getIndent($inDepth);
         $result = PHP_EOL . "{$indent}{$key}: {$val}";
