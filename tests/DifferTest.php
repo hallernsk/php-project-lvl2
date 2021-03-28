@@ -21,13 +21,13 @@ class DifferTest extends TestCase
         $formatStylish = 'stylish';
         $formatPlain = 'plain';
         $formatJson = 'json';
-        $fileJson1 = __DIR__ . '/fixtures/file1.json';
-        $fileJson2 = __DIR__ . '/fixtures/file2.json';
-        $fileYml1 = __DIR__ . '/fixtures/file1.yml';
-        $fileYml2 = __DIR__ . '/fixtures/file2.yml';
-        $diffStylish = file_get_contents(__DIR__ . '/fixtures/correctDiffStylish');
-        $diffPlain = file_get_contents(__DIR__ . '/fixtures/correctDiffPlain');
-        $diffJson = file_get_contents(__DIR__ . '/fixtures/correctDiffJson');
+        $fileJson1 =  $this->getFixtureFilepath('file1.json');
+        $fileJson2 = $this->getFixtureFilepath('file2.json');
+        $fileYml1 = $this->getFixtureFilepath('file1.yml');
+        $fileYml2 = $this->getFixtureFilepath('file2.yml');
+        $diffStylish = file_get_contents($this->getFixtureFilepath('correctDiffStylish'));
+        $diffPlain = file_get_contents($this->getFixtureFilepath('correctDiffPlain'));
+        $diffJson = file_get_contents($this->getFixtureFilepath('correctDiffJson'));
 
         return [
             [$fileJson1, $fileJson2, $formatStylish, $diffStylish],
@@ -37,5 +37,10 @@ class DifferTest extends TestCase
             [$fileJson1, $fileJson2, $formatJson, $diffJson],
             [$fileYml1, $fileYml2, $formatJson, $diffJson]
         ];
+    }
+
+    public function getFixtureFilepath(string $filename): string
+    {
+        return __DIR__ . "/fixtures/{$filename}";
     }
 }
