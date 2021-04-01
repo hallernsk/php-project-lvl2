@@ -2,6 +2,8 @@
 
 namespace Differ\DiffTreeBuilder;
 
+use function Functional\sort;
+
 function buildDiffTree(array $data1, array $data2): array
 {
     // из массивов данных создаем массивы ключей:
@@ -9,7 +11,7 @@ function buildDiffTree(array $data1, array $data2): array
     $keys2 = array_keys($data2);
     $unitedKeys = array_merge($keys1, $keys2);
     $unitedUniqKeys = array_unique($unitedKeys);
-    sort($unitedUniqKeys);
+    $sortedKeys = sort($unitedUniqKeys, fn ($left, $right) => $left <=> $right);
 
     $diffTree = array_map(function ($key) use ($data1, $data2) {
         if (!array_key_exists($key, $data2)) {            // ключ есть только в М1
@@ -28,6 +30,6 @@ function buildDiffTree(array $data1, array $data2): array
                 'children' => buildDiffTree($data1[$key], $data2[$key])];
         }
         return ['key' => $key, 'type' => 'changed', 'valueOld' => $data1[$key], 'valueNew' => $data2[$key]];
-    }, $unitedUniqKeys);
+    }, $sortedKeys);
     return $diffTree;
 }
