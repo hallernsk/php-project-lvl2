@@ -13,34 +13,34 @@ function format(array $data): string
 function formatToStylish(array $diffTree, int $depth = 0): array
 {
     $indent = getIndent($depth);
-    $inDepth = $depth + 1;
-    $result = array_map(function ($node) use ($indent, $inDepth): string {
+    $nextDepth = $depth + 1;
+    $result = array_map(function ($node) use ($indent, $nextDepth): string {
         switch ($node['type']) {
             case 'deleted':
                 $value = $node['value'];
-                $formattedValue = toString($value, $inDepth);
+                $formattedValue = toString($value, $nextDepth);
                 return "{$indent}  - {$node['key']}: {$formattedValue}";
 
             case 'added':
                 $value = $node['value'];
-                $formattedValue = toString($value, $inDepth);
+                $formattedValue = toString($value, $nextDepth);
                 return "{$indent}  + {$node['key']}: {$formattedValue}";
 
             case 'unchanged':
                 $value = $node['value'];
-                $formattedValue = toString($value, $inDepth);
+                $formattedValue = toString($value, $nextDepth);
                 return "{$indent}    {$node['key']}: {$formattedValue}";
 
             case 'changed':
                 $valueOld = $node['valueOld'];
-                $formattedValueOld = toString($valueOld, $inDepth);
+                $formattedValueOld = toString($valueOld, $nextDepth);
                 $valueNew = $node['valueNew'];
-                $formattedValueNew = toString($valueNew, $inDepth);
+                $formattedValueNew = toString($valueNew, $nextDepth);
                 return "{$indent}  - {$node['key']}: {$formattedValueOld}" . PHP_EOL .
                        "{$indent}  + {$node['key']}: {$formattedValueNew}";
 
             case 'nested':
-                $stringNested = implode(PHP_EOL, formatToStylish($node['children'], $inDepth));
+                $stringNested = implode(PHP_EOL, formatToStylish($node['children'], $nextDepth));
                 return "{$indent}    {$node['key']}: {" . PHP_EOL .
                      "{$stringNested}" . PHP_EOL . "{$indent}    }";
 
