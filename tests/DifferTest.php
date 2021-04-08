@@ -11,9 +11,9 @@ class DifferTest extends TestCase
     /**
      * @dataProvider addDataProvider
      */
-    public function testDiffer($filepathExpectedDiff, $file1, $file2, $format)
+    public function testDiffer($filepathExpectedDiff, $filepath1, $filepath2, $format)
     {
-        $this->assertStringEqualsFile($filepathExpectedDiff, genDiff($file1, $file2, $format));
+        $this->assertStringEqualsFile($filepathExpectedDiff, genDiff($filepath1, $filepath2, $format));
     }
 
     public function addDataProvider()
